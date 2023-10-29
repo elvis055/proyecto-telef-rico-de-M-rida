@@ -1,72 +1,62 @@
-   (*
-   mano nose como este esta monda, lo unico que no se es para que borre lo escrito en consola
-   me preocupa D:
+(*
+   ahi vamos
 *)
 
-program telefericoM2;
-     uses crt;
-        var
-          nombre,apellido,tramo,cantidad,tipo_b:integer;
-          cedula:integer;
-          estacion:integer;
+program telefericomister;
+    
+uses crt;
+	var
+	nombre,apellido: string;
+	opcion: char;
+	estacion: integer;
+	cedula: string;
+	i: integer;
+	contiene_letras:boolean;
+	tramo:integer;
+	
 begin
-  writeln('_____________________');
-  writeln('     TELEFERICO      ');
-  writeln('        DEL         ');
-  writeln('       MISTER        ');
-  writeln('_____________________');
-  writeln('');
-  writeln('PORFAVOR');
-  writeln('');
-  write('INGRESAR SUS DATOS PERSONALES: ');
-  writeln('  ');
-  write('NOMBRE: ');
-  readln(nombre);
+	writeln('_____________________');
+	writeln('     BIENVENIDO      ');
+	writeln('        AL           ');
+	writeln('     TELEFERICO      ');
+	writeln('        DEL          ');
+	writeln('       MISTER        ');
+	writeln('_____________________');
+writeln('');
+writeln('que desea hacer?');
+writeln('1. comprar boleto');
+writeln('2. ver el sistema');
+writeln ('3. salir');
+readln(opcion);
+	case opcion of 
+	'1': begin
+	writeln('usted ha escogido comprar boleto, por favor ingrese sus datos para la compra');
+	writeln('ingrese su nombre');
+		readln(nombre);
+	writeln('ingrese su apellido');
+		readln(apellido);
+	begin
+  repeat
+    writeln('Ingrese su cedula:');
+    readln(cedula);
+    
+    contiene_Letras := False;
+    
+    for i := 1 to length(cedula) do
+    begin
+      if (cedula[i] in ['a'..'z', 'A'..'Z']) then
+      begin
+        contiene_Letras := True;
+        break;
+      end;
+    end;
+    
+    if contiene_Letras then
+      writeln('La cedula no puede contener letras. Por favor, ingrese nuevamente.');
+      
+  until not contiene_Letras;
 
-  if nombre<>1 then
-     begin
-     repeat
-       writeln(' ');
-       writeln('EL NOMBRE QUE INGRESO, NO APLICA');
-
-       writeln('PORFAVOR INTENTALO OTRA VEZ');
-       writeln('');
-       read(nombre);
-       until nombre = 1;
-     end;
-
-  writeln(' ');
-  write('APELLIDO :');
-  readln(apellido);
-
-  if apellido<>1 then
-     begin
-     repeat
-       writeln(' ');
-       writeln('EL APELLIDO QUE INGRESO, NO APLICA');
-
-       writeln('PORFAVOR INTENTALO OTRA VEZ');
-       writeln('');
-       read(apellido);
-       until apellido = 1;
-     end;
-
-  writeln(' ');
-  write('CEDULA :');
-  readln(cedula);
-
-  if cedula<>1 then
-     begin
-     repeat
-       writeln(' ');
-       writeln('EL APELLIDO QUE INGRESO, NO APLICA');
-
-       writeln('PORFAVOR INTENTALO OTRA VEZ');
-       writeln('');
-       readln(cedula);
-       until cedula = 1;
-     end;
-
+  writeln('Cedula ingresada correctamente.');
   writeln('');
   writeln('INGRESAR SU ESTACION: ');
   writeln('');
@@ -77,7 +67,6 @@ begin
   writeln('5. PICO ESPEJO');
   writeln('');
   readln(estacion);
-
   case estacion of
 
    1:begin
@@ -125,23 +114,12 @@ begin
        writeln('4. PICO ESPEJO - BARINITAS');
        readln(tramo);
    end;
+end;
+end;
 
 
 
-  end;
-
-
-
-
-
-
-
-
-
-
-
-
-  READLN();
+	
 
 
 
@@ -149,4 +127,64 @@ begin
 
 
 
-  end.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+end;
+end;
+end.
