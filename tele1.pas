@@ -1,19 +1,17 @@
 (*
-   vamos mejor
+   ya casi
 *)
 
-program telefericomister;
+program telefericoM4;
 
 uses crt;
 	var
-	nombre,apellido,tipo_b,cedula,origen,destino,conf,precio_u: string;
+	nombre,apellido,tipo_b,cedula,origen,destino,conf,precio_u,regreso,regreso_b: string;
 	opcion: char;
 	estacion,i,cantidad_b,tramo,edad: integer;
 	contiene_letras:boolean;
         precio_b:real;
 begin
-textcolor(blue);
-textbackground(white);
 	writeln('------------------------------------');
 	writeln('            BIENVENIDO              ');
 	writeln('                AL                  ');
@@ -250,35 +248,90 @@ readln(opcion);
   readln(conf);
   until conf='N';
 
+  begin
+    writeln('');
+    writeln('DESEA COMPRAR UN BOLETO DE REGRESO?');
+    write('Y o N: ');
+    readln(regreso);
+    writeln('');
+    WRITELN('');
 
-
-
-  WRITELN('');
   write('CANTIDAD DE BOLETOS: ');
   readln(cantidad_b);
+
+                if regreso='Y' then
+                  begin
+                  writeln('');
+                  writeln('RUTA DE REGRESO: ');
+                  writeln('');
+                  writeln('ORIGEN: ',destino);
+                   writeln('DESTINO: ',origen);
+                    if edad < 3 then
+                       begin
+                       precio_b:=0;
+                       precio_u:='$0';
+                       tipo_b:='EXONERADO';
+                       end
+
+                    else if (edad<=12) OR (edad>=60) then
+                         begin
+                         precio_b:=cantidad_b*12*2;
+                         precio_u:='$12';
+                         tipo_b:='TERCERA EDAD/MENORES DE EDAD';
+                         end
+
+                    else if  (edad>=13) or (edad<=59) then
+                         BEGIN
+                         precio_b:=cantidad_b*20*2;
+                         precio_u:='$20';
+                         tipo_b:='GENERAL';
+                         end;
+                          end;
+                           end;
+                            end;
+
+    end;
+
+
+
   WRITELN('');WRITELN('');WRITELN('');WRITELN('');WRITELN('');WRITELN('');
 
-  if edad < 3 then
+  IF regreso<>'Y' then
      begin
-     precio_b:=cantidad_b*0;
-     precio_u:='$0';
-     tipo_b:='EXONERADO';
-     end
+      if edad < 3 then
+         begin
+         precio_b:=0;
+         precio_u:='$0';
+         tipo_b:='EXONERADO';
+         end
 
-  else if (edad<=12) OR (edad>=60) then
-       begin
-       precio_b:=cantidad_b*(12*2);
-       precio_u:='$12';
-       tipo_b:='TERCERA EDAD/MENORES DE EDAD';
-       end
+      else if (edad<=12) OR (edad>=60) then
+           begin
+           precio_b:=cantidad_b*(12);
+           precio_u:='$12';
+           tipo_b:='TERCERA EDAD/MENORES DE EDAD';
+           end
 
-  else if  (edad>=13) or (edad<=59) then
-       BEGIN
-       precio_b:=cantidad_b*(20*2);
-       precio_u:='$20';
-       tipo_b:='GENERAL';
-       end;
-       writeln('------------------------------------');
+      else if  (edad>=13) or (edad<=59) then
+           BEGIN
+           precio_b:=cantidad_b*(20);
+           precio_u:='$20';
+           tipo_b:='GENERAL';
+           end;
+
+            if regreso='Y' then
+              begin
+              regreso_b:='Si'
+              end
+            else if regreso<>'Y' then
+              begin
+              regreso_b:='No';
+              end;
+           end;
+
+         if regreso<>'Y' then
+           begin
+         writeln('------------------------------------');
          writeln('              FACTURA               ');
          writeln('------------------------------------');
          writeln('NOMBRE: ',nombre);
@@ -296,13 +349,32 @@ readln(opcion);
          writeln('------------------------------------');
          writeln('       GRACIAS POR SU COMPRA        ');
          writeln('------------------------------------');
-         
-         end;
-        end;
-        case opcion of
-        '2':begin
-        writeln('hasta ahora se han vendido ',cantidad_b); 
-        write('boletos de tipo',tipo_b);
-        end;
-        end;
+           end
+
+         else if regreso='Y' then
+           begin
+         writeln('------------------------------------');
+         writeln('              FACTURA               ');
+         writeln('------------------------------------');
+         writeln('NOMBRE: ',nombre);
+         writeln('APELLIDO: ',apellido);
+         writeln('CEDULA: ',cedula);
+         writeln('------------------------------------');
+         writeln('ESTACION/ORIGEN:       ',origen);
+         writeln('TRAMO/DESTINO:         ',destino);
+         writeln('------------------------------------');
+         writeln('RUTA DE REGRESO:       ');
+         write('ORIGEN:',destino);writeln(' /DESTINO:',origen);
+         writeln('------------------------------------');
+         writeln('TIPO DE BOLETO:        ',tipo_b);
+         writeln('CANTIDAD DE BOLETOS:   ',cantidad_b);
+         writeln('------------------------------------');
+         writeln('PRECIO UNITARIO:       ',precio_u);
+         writeln('PRECIO TOTAL:          ',precio_b:4:2);
+         writeln('------------------------------------');
+         writeln('       GRACIAS POR SU COMPRA        ');
+         writeln('------------------------------------');
+           end;
+
+        readln();
         end.
