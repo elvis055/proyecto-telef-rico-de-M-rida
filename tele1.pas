@@ -12,6 +12,8 @@ uses crt;
 	contiene_letras:boolean;
         precio_b:real;
 begin
+textcolor(red);
+textbackground(white);
 	writeln('------------------------------------');
 	writeln('            BIENVENIDO              ');
 	writeln('                AL                  ');
