@@ -1,19 +1,23 @@
 (*
-   ya casi
+   casi casi
 *)
 
-program telefericoM4;
+program TELEFmFINAL;
 
 uses crt;
 	var
-	nombre,apellido,tipo_b,cedula,origen,destino,conf,precio_u,regreso,regreso_b: string;
-	opcion: char;
+	nombre,apellido,tipo_b,cedula,origen,destino,conf,precio_u,regreso,regreso_b,dia_s:string;
+	opcion2,opcion: char;
 	estacion,i,cantidad_b,tramo,edad: integer;
 	contiene_letras:boolean;
-        precio_b:real;
+        precio_b,precio_t:real;
+        cantidad_A,cantidad_t,boletos_v:integer;
+
 begin
+cantidad_A:= 60;
 textcolor(red);
 textbackground(white);
+clrscr();
 	writeln('------------------------------------');
 	writeln('            BIENVENIDO              ');
 	writeln('                AL                  ');
@@ -21,6 +25,8 @@ textbackground(white);
 	writeln('               DEL                  ');
 	writeln('              MISTER                ');
 	writeln('------------------------------------');
+
+repeat
 
 writeln('');
 writeln('MENU');
@@ -32,6 +38,7 @@ readln(opcion);
 
 	case opcion of
 	'1': begin
+                  clrscr();
   	        writeln('USTED HA ESCOGIDO "COMPRAR BOLETOS", POR FAVOR INGRESE SUS DATOS PARA LA COMPRA:');
                 writeln('');
 	        write('INGRESE SU NOMBRE: ');
@@ -61,8 +68,23 @@ readln(opcion);
       writeln('La cedula no puede contener letras. Por favor, ingrese nuevamente.');
       writeln('');
   until not contiene_Letras;
-
+  clrscr();
   writeln('DATOS INGRESADOS CORRECTAMENTE.');
+  writeln('');
+  writeln('LA CANTIDAD DE ASIENTOS DISPONIBLES ES DE 60');
+  writeln('');
+  writeln('INGRESE LA CANTIDAD DE BOLETOS: ');
+  readln(cantidad_b);
+
+
+   while cantidad_b>60 do
+   begin
+   clrscr();
+   writeln('LA CANTIDAD DE BOLETOS NO PUEDE SER MAYOR A LA CANTIDAD DE ASIENTOS, POR FAVOR VUELVA A INGRESAR LA CANTIDAD DE BOLETOS');
+  readln(cantidad_b);
+  end;
+  write('DIA DE SALIDA (DD/MM/AAAA): ');
+  readln(dia_s);
   writeln('');
    writeln('INGRESAR SU ESTACION: ');
   repeat
@@ -256,13 +278,9 @@ readln(opcion);
     write('Y o N: ');
     readln(regreso);
     writeln('');
-    WRITELN('');
-
-  write('CANTIDAD DE BOLETOS: ');
-  readln(cantidad_b);
-
                 if regreso='Y' then
                   begin
+                  clrscr();
                   writeln('');
                   writeln('RUTA DE REGRESO: ');
                   writeln('');
@@ -296,7 +314,7 @@ readln(opcion);
 
 
 
-  WRITELN('');WRITELN('');WRITELN('');WRITELN('');WRITELN('');WRITELN('');
+
 
   IF regreso<>'Y' then
      begin
@@ -333,10 +351,11 @@ readln(opcion);
 
          if regreso<>'Y' then
            begin
+           clrscr();
          writeln('------------------------------------');
          writeln('              FACTURA               ');
          writeln('------------------------------------');
-         writeln('NOMBRE: ',nombre);
+         writeln('NOMBRE: ',nombre);writeln('      SALIDA:',dia_s);
          writeln('APELLIDO: ',apellido);
          writeln('CEDULA: ',cedula);
          writeln('------------------------------------');
@@ -355,10 +374,11 @@ readln(opcion);
 
          else if regreso='Y' then
            begin
+         clrscr();
          writeln('------------------------------------');
          writeln('              FACTURA               ');
          writeln('------------------------------------');
-         writeln('NOMBRE: ',nombre);
+         writeln('NOMBRE: ',nombre);write('      SALIDA:',dia_s);
          writeln('APELLIDO: ',apellido);
          writeln('CEDULA: ',cedula);
          writeln('------------------------------------');
@@ -372,11 +392,80 @@ readln(opcion);
          writeln('CANTIDAD DE BOLETOS:   ',cantidad_b);
          writeln('------------------------------------');
          writeln('PRECIO UNITARIO:       ',precio_u);
-         writeln('PRECIO TOTAL:          ',precio_b:4:2);
+         writeln('PRECIO TOTAL:          $',precio_b:4:2);
          writeln('------------------------------------');
          writeln('       GRACIAS POR SU COMPRA        ');
          writeln('------------------------------------');
-           end;
+          READLN();
 
+
+           writeln('DESEA VOLVER AL MENU?');
+           write('Y o N: ');
+           readln(conf)
+
+
+           end;
+           until conf<>'Y';
+
+
+
+
+begin
+
+cantidad_t:=cantidad_A-cantidad_b;
+boletos_v:=cantidad_b+cantidad_b;
+precio_t:=precio_b+precio_b;
+
+        case opcion of
+        '2':begin
+
+        clrscr();
+        writeln('----------------------------');
+        WriteLn('.         SISTEMA.          ');
+        writeln('----------------------------');
+        WriteLn('1. VER BOLETOS DISPONIBLES');
+        WriteLn('2. CANTIDAD DE BOLETOS VENDIDOS');
+        WriteLn('3. CANTIDAD TOTAL DE DINERO');
+        ReadLn(opcion2);
+
+        case opcion2 of
+
+        '1':begin
+        clrscr();
+        Write('LA CANTIDAD DE BOLETOS DISPONIBLES ES DE: ',cantidad_t);
+        WriteLn('');
         readln();
-        end.
+        end;
+
+        '2': begin
+        clrscr();
+        Write('LA CANTIDAD DE BOLETOS VENDIDOS ES DE: ',boletos_v);
+        writeln('');
+        readln();
+        end;
+
+        '3':begin
+        clrscr();
+        write('EL DINERO TOTAL GANADO EN VENTA DE BOLETOS',precio_t);
+        writeln('');
+        readln();
+        end;
+
+
+
+
+
+end;
+        case opcion of
+        '3':begin
+        writeln('GRACIAS POR INGRESAR A NUESTRA PAGINA');
+        writeln('QUE TENGA UN FELIZ DIA');
+        writeln('');
+        end;
+       
+       
+end;
+end;
+        end;
+end;
+end.
